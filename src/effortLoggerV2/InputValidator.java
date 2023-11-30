@@ -1,8 +1,12 @@
 // Created by: Thomas Schafer, 1221505363
-
-package effortLoggerV2;
+package riskReductionPrototype;
 
 public class InputValidator {
+	private int maxUsernameLength = 30;
+	private int maxPasswordLength = 20;
+	private int maxDescLength = 250;
+	private int maxSearchLength = 100;
+	
 	private String error;
 	private String letterAndNum;
 	private String letters;
@@ -42,6 +46,126 @@ public class InputValidator {
 		
 		// If the end is reached, everything must be whitespace
 		return true;
+	}
+	
+	// Identifies whether or not an inputted username consists of valid characters
+	// Receives a String representing the inputted username
+	// Returns a boolean, in which true indicates that the username is valid
+	public boolean validateUsername(String username) {
+		boolean validString = false;
+		
+		// Check that the username is not empty or full of whitespace
+		if (username == null || checkStringAllWhitespace(username)) {
+			this.error = "Username inputted was null or entirely whitespace\n";
+			return false;
+		}
+		// Check that the username does not exceed its length or have a length of 0
+		else if (username.length() > maxUsernameLength || username.length() <= 0) {
+			this.error = "Passed username was of invalid length\n";
+			return false;
+		}
+		
+		// Check that the username contains the correct characters, noting errors 
+		validString = username.matches("[a-zA-Z0-9_]+");
+		if (!validString) {
+			this.error = "Username contains invalid characters\n";
+		}
+		else {
+			this.error = "No error\n";
+		}
+		
+		// Return the validity of the username 
+		return validString;
+	}
+	
+	// Identifies whether or not an inputted password consists of valid characters
+	// Receives a String representing the inputted password
+	// Returns a boolean, in which true indicates that the password is valid
+	public boolean validatePassword(String password) {
+		boolean validString = false;
+		
+		// Check that the password is not empty or full of whitespace
+		if (password == null || checkStringAllWhitespace(password)) {
+			this.error = "Password inputted was null or entirely whitespace\n";
+			return false;
+		}
+		// Check that the password does not exceed its length or have a length of 0
+		else if (password.length() > maxPasswordLength || password.length() <= 0) {
+			this.error = "Passed password was of invalid length\n";
+			return false;
+		}
+		
+		// Check that the password contains the correct characters, noting errors 
+		validString = password.matches("[a-zA-Z0-9_!#$%^&*]+");
+		if (!validString) {
+			this.error = "Password contains invalid characters\n";
+		}
+		else {
+			this.error = "No error\n";
+		}
+		
+		// Return the validity of the password 
+		return validString;
+	}
+	
+	// Identifies whether or not an inputted description consists of valid characters
+	// Receives a String representing the inputted description
+	// Returns a boolean, in which true indicates that the description is valid
+	public boolean validateDescriptive(String description) {
+		boolean validString = false;
+		
+		// Check that the description is not empty or full of whitespace
+		if (description == null || checkStringAllWhitespace(description)) {
+			this.error = "Description inputted was null or entirely whitespace\n";
+			return false;
+		}
+		// Check that the description does not exceed its length or have a length of 0
+		else if (description.length() > maxDescLength || description.length() <= 0) {
+			this.error = "Passed description was of invalid length\n";
+			return false;
+		}
+		
+		// Check that the description contains the correct characters, noting errors 
+		validString = description.matches("[a-zA-Z0-9_., ]+");
+		if (!validString) {
+			this.error = "Description contains invalid characters\n";
+		}
+		else {
+			this.error = "No error\n";
+		}
+		
+		// Return the validity of the description 
+		return validString;
+	}
+	
+	// Identifies whether or not an inputted search entry consists of valid characters
+	// Receives a String representing the inputted search entry
+	// Returns a boolean, in which true indicates that the search entry is valid
+	public boolean validateSearch(String search) {
+		boolean validString = false;
+		
+		// Check that the search is not empty or full of whitespace
+		if (search == null || checkStringAllWhitespace(search)) {
+			this.error = "Search inputted was null or entirely whitespace\n";
+			return false;
+		}
+		// Check that the search does not exceed its length or have a length of 0
+		else if (search.length() > maxSearchLength || search.length() <= 0) {
+			this.error = "Passed search was of invalid length\n";
+			return false;
+		}
+		
+		// Check that the search contains the correct characters, noting errors 
+		validString = search.matches("[a-zA-Z0-9 ]+");
+		if (!validString) {
+			this.error = "Search contains invalid characters\n";
+		}
+		else {
+			this.error = "No error\n";
+		}
+		
+		// Return the validity of the search 
+		return validString;
 	}
 	
 	// Identifies whether a passed string consists of valid characteristics
