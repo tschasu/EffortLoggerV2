@@ -1,3 +1,5 @@
+//Written by Mikayla Rakolta
+
 package effortLoggerV2;
 
 import javafx.application.Application;
